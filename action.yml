@@ -27,7 +27,7 @@ runs:
       cd swig_src
       git clone ${{inputs.swig-repo}}
       cd swig
-      cmake -Bbuild -G "{{inputs.generator}} -DCMAKE_INSTALL_PREFIX:PATH=${{inputs.swig-root}} -DCMAKE_BUILD_TYPE:STRING=Release 
+      cmake -Bbuild -G "{{inputs.generator}}" -DCMAKE_INSTALL_PREFIX:PATH=${{inputs.swig-root}} -DCMAKE_BUILD_TYPE:STRING=Release 
       cd build
       make
       make install
