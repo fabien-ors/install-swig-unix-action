@@ -1,0 +1,33 @@
+name: install-swig-unix-action
+description: "Install SWIG from source under Linux or MacOS github runners."
+author: 'Fabien Ors'
+
+inputs:
+  swig-root:
+    description: 'SWIG installation directory'
+  swig-repo:
+    description: 'SWIG git repository (must be called "swig")'
+    default: "https://github.com/fabien-ors/swig"
+  swig-tag:
+    description: 'SWIG tag on the repository (TODO)'
+    default: "4.2.0b"
+  generator:
+    description: 'Generator used to compile SWIG'
+    default: "Unix Makefiles"
+  
+runs:
+  using: "composite"
+  steps:
+
+  - name: Compile and install [customized] SWIG
+    shell: bash
+    # TODO : Use swig-tag variable (not the master branch)
+    run: |
+      mkdir swig_src
+      cd swig_src
+      git clone ${{inputs.swig-repo}}
+      cd swig
+      cmake -Bbuild -G "{{input.generator}} -DCMAKE_INSTALL_PREFIX:PATH=${{input.swig-root}} -DCMAKE_BUILD_TYPE:STRING=Release 
+      cd build
+      make
+      make install
