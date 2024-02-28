@@ -1,2 +1,2 @@
-# install-swig-windows-action
-Gthub action for installing SWIG from source under windows github runners.
+# install-swig-unix-action
+Gthub action for installing SWIG from source under Linux or MacOS github runners.
